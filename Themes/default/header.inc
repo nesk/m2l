@@ -1011,6 +1011,10 @@ function init()
       echo "<a href=\"report.php?$query_str\">" . get_vocab("report") . "</a>\n";
       echo "</td>\n";
       ?>
+
+      <td>
+        <a href="/ext_user_stats.php">Tableau de bord</a>
+      </td>
       
       <td>
         <form id="header_search" method="get" action="search.php">
