@@ -1012,9 +1012,12 @@ function init()
       echo "</td>\n";
       ?>
 
+      <?php if(authGetUserLevel(getUserName()) >= 1) { ?>
       <td>
         <a href="/ext_user_stats.php">Tableau de bord</a>
       </td>
+      <?php } ?>
+
       
       <td>
         <form id="header_search" method="get" action="search.php">

@@ -21,7 +21,6 @@ $page_level['report.php']                = ($auth['deny_public_access']) ? 1 : 0
 $page_level['search.php']                = ($auth['deny_public_access']) ? 1 : 0;
 $page_level['view_entry.php']            = ($auth['deny_public_access']) ? 1 : 0;
 $page_level['week.php']                  = ($auth['deny_public_access']) ? 1 : 0;
-$page_level['ext_user_stats']            = ($auth['deny_public_access']) ? 1 : 0;
 
 // These pages are set to have a minimum access level of 1 as ordinary users
 // should be able to access them because they will have read access and in some
@@ -35,6 +34,7 @@ $page_level['edit_entry.php']            = 1;  // Ordinary users can edit their 
 $page_level['edit_entry_handler.php']    = 1;  // Ordinary users can edit their own entries
 $page_level['edit_users.php']            = 1;  // Ordinary users can edit their own details
 $page_level['pending.php']               = 1;  // Ordinary users can view their own entries
+$page_level['ext_user_stats.php']        = 1;  // Ordinary users can view their own dashboard
 
 // These pages have a minimum access level of 2 as they only contain admin features
 $page_level['add.php']                   = 2;
