@@ -1,9 +1,17 @@
 <?php
 
+/*
+ * Includes
+ */
+
 require_once "defaultincludes.inc";
 require_once "theme.inc";
 
 require_once "ext_autoloader.php";
+
+/*
+ * Preprocessing and header
+ */
 
 // Checks if the user is authorised for this page
 checkAuthorised();
@@ -16,5 +24,3 @@ print_header($day, $month, $year, $area, isset($room) ? $room : "");
 <?php
 
 require_once "trailer.inc";
-
-?>
