@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * Database class
+ *
+ * Provides a connection to the database and methods to easily retrieve data.
+ * Each method retrieving data takes an anonymous function in argument, this
+ * allows the caller to get rid of the loop management.
+ */
+
 class Database {
 
     private $db;
@@ -11,6 +19,25 @@ class Database {
         $db->exec('SET NAMES UTF8');
 
         $this->user = getUserName();
+    }
+
+    public function getPastEntries($onData) {
+        $req = $this->db->prepare('
+            SELECT e.name AS name, r.room_name AS room
+            FROM mrbs_entry AS e
+            LEFT JOIN mrbs_room AS r ON e.room_id = r.id
+            WHERE e.create_by = :user
+            AND e.end_time <= :time
+        ');
+
+        $req->execute(array(
+            'user' => $this->user,
+            'time' => time()
+        ));
+
+        while($data = $req->fetch()) {
+            $onData($data);
+        }
     }
 
 }
