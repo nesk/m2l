@@ -37,31 +37,32 @@ function tableNoContent() {
  * Main HTML code for entries
  */
 -->
+<div style="width:50%;float:left">
+    <h2>Vos réservations actuelles</h2>
 
-<h2>Vos réservations actuelles</h2>
+    <table class="admin_table">
+    <?php
+    tableHeader();
 
-<table class="admin_table">
-<?php
-tableHeader();
+    $db->getActualEntries(function($data) {
+        tableContent($data);
+    }, function() {
+        tableNoContent();
+    });
+    ?>
+    </table>
 
-$db->getActualEntries(function($data) {
-    tableContent($data);
-}, function() {
-    tableNoContent();
-});
-?>
-</table>
+    <h2>Vos réservations terminées</h2>
 
-<h2>Vos réservations terminées</h2>
+    <table class="admin_table">
+    <?php
+    tableHeader();
 
-<table class="admin_table">
-<?php
-tableHeader();
-
-$db->getPastEntries(function($data) {
-    tableContent($data);
-}, function() {
-    tableNoContent();
-});
-?>
-</table>
+    $db->getPastEntries(function($data) {
+        tableContent($data);
+    }, function() {
+        tableNoContent();
+    });
+    ?>
+    </table>
+</div>
