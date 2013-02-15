@@ -21,6 +21,10 @@ class Database {
         $this->user = getUserName();
     }
 
+    /*
+     * Entries
+     */
+
     private function getEntries($onData, $noData, $comparison) {
         $req = $this->db->prepare('
             SELECT e.id AS eId, r.id AS rId, e.name AS name, r.room_name AS room, start_time AS start, end_time AS end, repeat_id
@@ -55,4 +59,36 @@ class Database {
         $this->getEntries($onData, $noData, '>');
     }
 
+    /*
+     * Statistics
+     */
+
+    private function roomUsage($start, $end, $onData) {
+        $req = $this->db->prepare('
+            SELECT room_name AS name, count(room_id) AS nb
+            FROM mrbs_entry AS e
+            JOIN mrbs_room AS r ON e.room_id = r.id
+            WHERE e.create_by = :user
+            AND (start_time <= :end OR end_time >= :start)
+            GROUP BY r.id
+        ');
+
+        $req->execute(array(
+            'user' => $this->user,
+            'start' => $start,
+            'end' => $end + 86399 // Going to the last second of the specified day
+        ));
+
+        while($data = $req->fetch()) {
+            $onData($data);
+        }
+    }
+
+    public function getStats($type, $start, $end, $onData) {
+        switch($type) {
+            case 'roomUsage':
+                $this->roomUsage($start, $end, $onData);
+                break;
+        }
+    }
 }
