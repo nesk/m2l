@@ -21,13 +21,13 @@ class Database {
         $this->user = getUserName();
     }
 
-    public function getPastEntries($onData) {
+    private function getEntries($onData, $comparison) {
         $req = $this->db->prepare('
             SELECT e.name AS name, r.room_name AS room
             FROM mrbs_entry AS e
             LEFT JOIN mrbs_room AS r ON e.room_id = r.id
             WHERE e.create_by = :user
-            AND e.end_time <= :time
+            AND e.end_time ' . $comparison . ' :time
         ');
 
         $req->execute(array(
@@ -38,6 +38,14 @@ class Database {
         while($data = $req->fetch()) {
             $onData($data);
         }
+    }
+
+    public function getPastEntries($onData) {
+        $this->getEntries($onData, '<=');
+    }
+
+    public function getActualEntries($onData) {
+        $this->getEntries($onData, '>');
     }
 
 }
