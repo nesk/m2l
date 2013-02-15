@@ -1,8 +1,8 @@
-<!--
+<?php
 /*
  * Functions to display some repetitives parts of the HTML code
  */
--->
+?>
 
 <?php function tableHeader() { ?>
 <tr>
@@ -32,11 +32,13 @@ function tableNoContent() {
 </tr>
 <?php } ?>
 
-<!--
+
+<?php
 /*
  * Main HTML code for entries
  */
--->
+?>
+
 <div style="width:50%;float:left">
     <h2>Vos réservations actuelles</h2>
 
