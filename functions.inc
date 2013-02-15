@@ -525,6 +525,10 @@ function genDateSelector($prefix, $day, $month, $year, $form_id='')
 	datepicker_html += '<input type="hidden" id="<?php echo $datepicker_baseid ?>_alt_year" name="<?php echo $prefix ?>year">\n';
 	dateselector.innerHTML = datepicker_html;
 	
+  setTimeout(function() {
+    $('#ui-datepicker-div').hide();
+  }, 10);
+
 	</script>
   <?php
 }
