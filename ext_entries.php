@@ -15,9 +15,13 @@
 }
 
 function tableContent($data) {
+    // Displays an icon and an id when the current entry is repeated
+    $repeat = $data['repeat_id'] != 0
+        ? '['. $data['repeat_id'] . '] <img src="/images/repeat.png" />'
+        : '';
 ?>
 <tr>
-    <td><a href="/view_entry.php?id=<?=$data['eId']?>"><?=$data['name']?></a></td>
+    <td><a href="/view_entry.php?id=<?=$data['eId']?>"><?=$data['name']?> <span style="float:right;margin-left:15px"><?=$repeat?></span></a></td>
     <td><a href="/edit_area_room.php?change_room=1&phase=1&room=<?=$data['rId']?>"><?=$data['room']?></a></td>
     <td><?=date('d/m/Y H:i', $data['start'])?></td>
     <td><?=date('d/m/Y H:i', $data['end'])?></td>
