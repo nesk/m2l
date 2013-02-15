@@ -32,6 +32,7 @@ class Database {
             LEFT JOIN mrbs_room AS r ON e.room_id = r.id
             WHERE e.create_by = :user
             AND e.end_time ' . $comparison . ' :time
+            ORDER BY start_time
         ');
 
         $req->execute(array(
