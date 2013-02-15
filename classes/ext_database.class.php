@@ -23,7 +23,7 @@ class Database {
 
     private function getEntries($onData, $noData, $comparison) {
         $req = $this->db->prepare('
-            SELECT e.name AS name, r.room_name AS room
+            SELECT e.id AS eId, r.id AS rId, e.name AS name, r.room_name AS room, start_time AS start, end_time AS end
             FROM mrbs_entry AS e
             LEFT JOIN mrbs_room AS r ON e.room_id = r.id
             WHERE e.create_by = :user
