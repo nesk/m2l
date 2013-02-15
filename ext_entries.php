@@ -46,7 +46,7 @@ function tableNoContent() {
 <div style="width:50%;float:left">
     <h2>Vos réservations actuelles</h2>
 
-    <table class="admin_table">
+    <table class="admin_table" style="max-width:90%">
     <?php
     tableHeader();
 
@@ -60,7 +60,7 @@ function tableNoContent() {
 
     <h2>Vos réservations terminées</h2>
 
-    <table class="admin_table">
+    <table class="admin_table" style="max-width:90%">
     <?php
     tableHeader();
 
