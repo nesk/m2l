@@ -4,7 +4,7 @@
  * Database class
  *
  * Provides a connection to the database and methods to easily retrieve data.
- * Each method retrieving data takes an anonymous function in argument, this
+ * Each method retrieving data takes anonymous functions in argument, this
  * allows the caller to get rid of the loop management.
  */
 
@@ -21,7 +21,7 @@ class Database {
         $this->user = getUserName();
     }
 
-    private function getEntries($onData, $comparison) {
+    private function getEntries($onData, $noData, $comparison) {
         $req = $this->db->prepare('
             SELECT e.name AS name, r.room_name AS room
             FROM mrbs_entry AS e
@@ -35,17 +35,24 @@ class Database {
             'time' => time()
         ));
 
+        $isThereData = false;
+
         while($data = $req->fetch()) {
+            $isThereData = true;
             $onData($data);
+        }
+
+        if(!$isThereData) {
+            $noData();
         }
     }
 
-    public function getPastEntries($onData) {
-        $this->getEntries($onData, '<=');
+    public function getPastEntries($onData, $noData) {
+        $this->getEntries($onData, $noData, '<=');
     }
 
-    public function getActualEntries($onData) {
-        $this->getEntries($onData, '>');
+    public function getActualEntries($onData, $noData) {
+        $this->getEntries($onData, $noData, '>');
     }
 
 }
