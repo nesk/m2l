@@ -85,10 +85,12 @@ class Database {
         }
     }
 
-    public function getStats($type, $start, $end, $onData) {
+    public function getStats($type, $options, $onData) {
+        $o = $options; // Shortcut
+
         switch($type) {
             case 'roomUsage':
-                $this->roomUsage($start, $end, $onData);
+                $this->roomUsage($o['start'], $o['end'], $onData);
                 break;
         }
     }
