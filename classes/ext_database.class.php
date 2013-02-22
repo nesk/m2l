@@ -22,6 +22,27 @@ class Database {
     }
 
     /*
+     * Users
+     */
+
+    public function getUsers($onData) {
+        $req = $this->db->prepare('
+            SELECT name
+            FROM mrbs_users
+            WHERE name != :user
+            ORDER BY name
+        ');
+
+        $req->execute(array(
+            'user' => getUserName() // We don't need to retrieve the current user
+        ));
+
+        while($data = $req->fetch()) {
+            $onData($data);
+        }
+    }
+
+    /*
      * Entries
      */
 
