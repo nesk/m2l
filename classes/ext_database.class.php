@@ -13,12 +13,12 @@ class Database {
     private $db;
     private $user;
 
-    public function __construct() {
+    public function __construct($user) {
         $this->db = $db = new PDO('mysql:host=localhost;dbname=mrbs', 'root', '');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->exec('SET NAMES UTF8');
 
-        $this->user = getUserName();
+        $this->user = $user;
     }
 
     /*
@@ -51,7 +51,7 @@ class Database {
             SELECT e.id AS eId, r.id AS rId, e.name AS name, r.room_name AS room, start_time AS start, end_time AS end, repeat_id
             FROM mrbs_entry AS e
             LEFT JOIN mrbs_room AS r ON e.room_id = r.id
-            WHERE e.create_by = :user
+            WHERE e.create_by LIKE :user
             AND e.end_time ' . $comparison . ' :time
             ORDER BY start_time
         ');
@@ -90,7 +90,7 @@ class Database {
             SELECT room_name AS name, count(room_id) AS nb
             FROM mrbs_entry AS e
             JOIN mrbs_room AS r ON e.room_id = r.id
-            WHERE e.create_by = :user
+            WHERE e.create_by LIKE :user
             AND (start_time <= :end OR end_time >= :start)
             GROUP BY r.id
         ');
@@ -125,7 +125,7 @@ class Database {
         $req = $this->db->prepare('
             SELECT count(id) AS nb, start_time AS date
             FROM mrbs_entry
-            WHERE create_by = :user
+            WHERE create_by LIKE :user
             AND (start_time <= :end OR end_time >= :start)
             GROUP BY '. $groupby .'
         ');
