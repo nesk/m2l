@@ -22,7 +22,7 @@ checkAuthorised();
 
 // Checks if the user can display an another dashboard than its own
 if(!empty($selectedUser) && $userLvl < 2 && $selectedUser != $currentUser) {
-    header('Location: /ext_user_stats.php');
+    header('Location: /ext_dashboard.php');
     exit();
 }
 

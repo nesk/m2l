@@ -34,7 +34,7 @@ $page_level['edit_entry.php']            = 1;  // Ordinary users can edit their 
 $page_level['edit_entry_handler.php']    = 1;  // Ordinary users can edit their own entries
 $page_level['edit_users.php']            = 1;  // Ordinary users can edit their own details
 $page_level['pending.php']               = 1;  // Ordinary users can view their own entries
-$page_level['ext_user_stats.php']        = 1;  // Ordinary users can view their own dashboard
+$page_level['ext_dashboard.php']        = 1;  // Ordinary users can view their own dashboard
 
 // These pages have a minimum access level of 2 as they only contain admin features
 $page_level['add.php']                   = 2;
