@@ -1,29 +1,33 @@
-/*
- * Dashboard user
- */
+(function() {
 
-$('#dashboard-user').change(function() {
-    var value = $(this).find('option:selected').attr('value');
-    location = 'ext_dashboard.php?user='+ encodeURIComponent(value);
-});
+    /*
+     * Dashboard user
+     */
 
-/*
- * Forms
- */
+    $('#dashboard-user').change(function() {
+        var value = $(this).find('option:selected').attr('value');
+        location = 'ext_dashboard.php?user='+ encodeURIComponent(value);
+    });
 
-var form = $('#chart-form');
+    /*
+     * Forms
+     */
 
-$('#chart-blocks span').hide();
+    var form = $('#chart-form');
 
-form.find('[name="chart-type"]').change(function() {
     $('#chart-blocks span').hide();
 
-    var value = $(this).find('option:selected').attr('value');
-    $('#chart-blocks-'+ value).show();
-});
+    form.find('[name="chart-type"]').change(function() {
+        $('#chart-blocks span').hide();
 
-/*
- * Datepicker
- */
+        var value = $(this).find('option:selected').attr('value');
+        $('#chart-blocks-'+ value).show();
+    });
 
-form.find('[name="chart-start"], [name="chart-end"]').datepicker();
+    /*
+     * Datepicker
+     */
+
+    form.find('[name="chart-start"], [name="chart-end"]').datepicker();
+
+})();
