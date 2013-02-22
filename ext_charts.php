@@ -21,7 +21,7 @@ $chartStart = date('d/m/Y', mktime(0, 0, 0, date('n')-1));
             
             <span id="chart-blocks-entriesNb">
                 par
-                <select name="chart-type">
+                <select name="chart-period">
                     <option value="day">jour</option>
                     <option value="week" selected="selected">semaine</option>
                     <option value="month">mois</option>
@@ -32,7 +32,7 @@ $chartStart = date('d/m/Y', mktime(0, 0, 0, date('n')-1));
         du <input type="text" name="chart-start" value="<?=$chartStart?>"/>
         au <input type="text" name="chart-end" value="<?=date('d/m/Y')?>"/>
 
-        <input name="chart-display" type="submit" value="Afficher" />
+        <input type="submit" value="Afficher" />
     </form>
 
     <div id="chart"></div>
