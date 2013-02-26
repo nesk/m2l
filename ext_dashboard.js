@@ -69,7 +69,8 @@
             event.preventDefault();
 
             var selectedChart = form.find('select[name="chart-type"] option:selected'),
-                chartType = chartTypes[selectedChart.attr('value')],
+                chartName = selectedChart.attr('value'),
+                chartType = chartTypes[chartName],
                 data = {};
             
             // If there's no additional input, we create the property. In the two cases, we add "chart-start" and "chart-end".
@@ -81,8 +82,9 @@
                 data[input] = encodeURIComponent(form.find('[name="'+ input +'"]').attr('value'));
             }
 
-            // Retrieves the user of the dashboard and adds it to the data
-            data.user = $('#dashboard-user option:selected').attr('value');
+            // Retrieves some complementary informations and adds them to the data object
+            data['user'] = $('#dashboard-user option:selected').attr('value');
+            data['chart-type'] = chartName;
 
             $.ajax({
                 url: '/ext_charts_xhr.php',
