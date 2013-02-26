@@ -55,7 +55,11 @@
 
             entriesNb: {
                 object: google.visualization.LineChart,
-                additionalInputs: ['chart-period']
+                additionalInputs: ['chart-period'],
+                options: {
+                    pointSize: 4,
+                    lineWidth: 2
+                }
             }
 
         };
