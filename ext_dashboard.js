@@ -54,12 +54,8 @@
             },
 
             entriesNb: {
-                object: google.visualization.LineChart,
-                additionalInputs: ['chart-period'],
-                options: {
-                    pointSize: 4,
-                    lineWidth: 2
-                }
+                object: google.visualization.ColumnChart,
+                additionalInputs: ['chart-period']
             }
 
         };
