@@ -79,7 +79,7 @@
 
             // Retrieves all the data (including "chart-start" and "chart-end") and stores it in an object
             for(var i = 0, input ; input = chartType.additionalInputs[i++] ;) {
-                data[input] = encodeURIComponent(form.find('[name="'+ input +'"]').attr('value'));
+                data[input] = form.find('[name="'+ input +'"]').attr('value');
             }
 
             // Retrieves some complementary informations and adds them to the data object
