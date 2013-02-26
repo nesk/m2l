@@ -93,6 +93,7 @@ class Database {
             WHERE e.create_by LIKE :user
             AND (start_time <= :end OR end_time >= :start)
             GROUP BY r.id
+            ORDER BY name
         ');
 
         $req->execute(array(
@@ -128,6 +129,7 @@ class Database {
             WHERE create_by LIKE :user
             AND (start_time <= :end OR end_time >= :start)
             GROUP BY '. $groupby .'
+            ORDER BY date
         ');
 
         $req->execute(array(
