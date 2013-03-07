@@ -38,8 +38,6 @@
 
     google.setOnLoadCallback(function() {
 
-        
-
         /*
          * Chart types
          *
@@ -64,7 +62,7 @@
          * Bindings and XHR
          */
 
-        form.find('[type="submit"]').click(function(event) {
+        form.submit(function(event) {
 
             event.preventDefault();
 
@@ -106,7 +104,7 @@
                 }
             });
 
-        });
+        }).submit();
 
     });
 
