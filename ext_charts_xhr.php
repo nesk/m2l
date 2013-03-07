@@ -75,8 +75,8 @@ $db->getStats(
             case 'entriesNb':
                 $formats = array(
                     'day' => '%d %b',
-                    'week' => '%V',
-                    'month' => '%b'
+                    'week' => 'Semaine %V',
+                    'month' => '%B'
                 );
 
                 $dataResponse[] = array(strftime($formats[$period], $data['date']), intval($data['nb']));
