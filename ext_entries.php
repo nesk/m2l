@@ -50,7 +50,7 @@ function tableNoContent() {
     <?php
     tableHeader();
 
-    $db->getActualEntries(function($data) {
+    $retriever->getActualEntries(function($data) {
         tableContent($data);
     }, function() {
         tableNoContent();
@@ -64,7 +64,7 @@ function tableNoContent() {
     <?php
     tableHeader();
 
-    $db->getPastEntries(function($data) {
+    $retriever->getPastEntries(function($data) {
         tableContent($data);
     }, function() {
         tableNoContent();

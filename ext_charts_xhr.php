@@ -19,8 +19,9 @@ if($userLvl <= 0 || !empty($selectedUser) && $userLvl < 2 && $selectedUser != $c
     exit(); // He can't
 }
 
-// Connecting to the database with a username
-$db = new Database(empty($selectedUser) ? $currentUser : $selectedUser);
+// Connecting to the database
+$db = new Database();
+$retriever = new StatRetriever($db, empty($selectedUser) ? $currentUser : $selectedUser);
 
 // Declares the content as JSON
 header('Content-type: application/json');
@@ -59,7 +60,7 @@ switch($chartType) {
 }
 
 // Retrieves the data
-$db->getStats(
+$retriever->getStats(
     $chartType,
     array(
         'start' => $start,

@@ -26,8 +26,9 @@ if(!empty($selectedUser) && $userLvl < 2 && $selectedUser != $currentUser) {
     exit();
 }
 
-// Connecting to the database with a username
+// Connecting to the database
 $db = new Database(empty($selectedUser) ? $currentUser : $selectedUser);
+$retriever = new DataRetriever($db, empty($selectedUser) ? $currentUser : $selectedUser);
 
 // Prints the page header
 print_header($day, $month, $year, $area, isset($room) ? $room : "");
@@ -45,7 +46,7 @@ print_header($day, $month, $year, $area, isset($room) ? $room : "");
         <option value="<?=$currentUser?>">Moi-même</option>
         <option value="%" <?php if($selectedUser == '%') echo 'selected="selected"'; ?> >Tous les utilisateurs</option>
         <optgroup label="Autres utilisateurs">
-            <?php $db->getUsers(function($data) use ($selectedUser) { ?>
+            <?php $retriever->getUsers(function($data) use ($selectedUser) { ?>
             <option value="<?=$data['name']?>" <?php if($selectedUser == $data['name']) echo 'selected="selected"'; ?> >
                 <?=$data['name']?>
             </option>
