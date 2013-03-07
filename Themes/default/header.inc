@@ -194,25 +194,28 @@ $(function() {
 ?>
 function datepicker_close(dateText, inst, formId)
 {
-  var alt_id = inst.id + '_alt';
-  var date = document.getElementById(alt_id).value.split('-');
-  document.getElementById(alt_id + '_year').value  = date[0];
-  document.getElementById(alt_id + '_month').value = date[1];
-  document.getElementById(alt_id + '_day').value   = date[2];
-  document.getElementById(inst.id).blur();
-  <?php
-  if ($page == 'edit_entry')
-  {
-    ?>
-    adjustSlotSelectors(document.getElementById('main'));
+  try { // Avoids issues on the dashboard datepickers
+    var alt_id = inst.id + '_alt';
+    var date = document.getElementById(alt_id).value.split('-');
+    document.getElementById(alt_id + '_year').value  = date[0];
+    document.getElementById(alt_id + '_month').value = date[1];
+    document.getElementById(alt_id + '_day').value   = date[2];
     <?php
-  }
-  ?>
-  if (formId)
-  {
-    var form = document.getElementById(formId);
-    form.submit();
-  }
+    if ($page == 'edit_entry')
+    {
+      ?>
+      adjustSlotSelectors(document.getElementById('main'));
+      <?php
+    }
+    ?>
+    if (formId)
+    {
+      var form = document.getElementById(formId);
+      form.submit();
+    }
+  } catch(e){};
+
+  document.getElementById(inst.id).blur(); // Always blur the input
 }
 
 
