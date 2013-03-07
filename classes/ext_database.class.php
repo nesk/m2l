@@ -91,7 +91,7 @@ class Database {
             FROM mrbs_entry AS e
             JOIN mrbs_room AS r ON e.room_id = r.id
             WHERE e.create_by LIKE :user
-            AND (start_time <= :end OR end_time >= :start)
+            AND start_time <= :end AND end_time >= :start
             GROUP BY r.id
             ORDER BY name
         ');
@@ -127,7 +127,7 @@ class Database {
             SELECT count(id) AS nb, start_time AS date
             FROM mrbs_entry
             WHERE create_by LIKE :user
-            AND (start_time <= :end OR end_time >= :start)
+            AND start_time <= :end AND end_time >= :start
             GROUP BY '. $groupby .'
             ORDER BY date
         ');
