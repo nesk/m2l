@@ -1017,7 +1017,7 @@ function init()
 
       <?php if(authGetUserLevel(getUserName()) >= 1) { ?>
       <td>
-        <a href="/ext_dashboard.php">Tableau de bord</a>
+        <a href="ext_dashboard.php">Tableau de bord</a>
       </td>
       <?php } ?>
 

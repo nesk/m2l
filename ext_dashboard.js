@@ -85,7 +85,7 @@
             data['chart-type'] = chartName;
 
             $.ajax({
-                url: '/ext_charts_xhr.php',
+                url: 'ext_charts_xhr.php',
                 dataType: 'json',
                 data: data,
 
